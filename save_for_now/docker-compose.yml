@@ -27,6 +27,17 @@ services:
       - path: .env
       - path: ${CONTAINERS_CONFIGDIR}/nginx/docker-compose-nginx.env
 
+  php:
+    container_name: php_${COMPOSE_PROJECT_NAME}
+    build:
+      dockerfile: ${CONTAINERS_CONFIGDIR}/php/php.Dockerfile
+    volumes:
+      - ./${APP_WEBROOT}:/var/www/html:rw
+      - ./${DEVSTATION_ROOT}:/var/www/html_devstation_app:rw
+    env_file:
+      - path: .env
+      - path: ${CONTAINERS_CONFIGDIR}/php/docker-compose-php.env
+      
   redis:
     container_name: redis_${COMPOSE_PROJECT_NAME}
     image: redis:latest

@@ -13,6 +13,9 @@
 #   - Unlike `postCreateCommand`, this script can run multiple times over the container’s lifecycle as new content arrives.
 #
 #   - Limited to repository and organization-scoped secrets or permissions in cloud-based executions.
+#
+# set -eux
+#
 
 export updateContentCommand=true
 

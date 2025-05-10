@@ -9,6 +9,9 @@
 #   - Useful for tasks that need to run on each start (for instance, reinitializing runtime conditions,
 #     restarting background services, or applying temporary configurations that should be 
 #     refreshed with every container start).
+#
+# set -eux
+#
 
 export postStartCommand=true
 

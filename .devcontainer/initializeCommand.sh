@@ -10,14 +10,15 @@
 #   - Intended for early initialization tasks that should occur within the running container,
 #     such as setting environment variables or making modifications to configuration files
 #     that the container will immediately rely on.
+#
+# set -eux
+#
 
 export initializeCommand=true
 
 ##### Automatically populate the .env files from the template.
 
 export PROJECT_NAME=$(basename "$PWD")
-export NODE_BASE_PACKAGES=express
-export NODE_SERVER_NAME=server.js
 
 envsubst < .env.template > .env ## all variables should get set here
 

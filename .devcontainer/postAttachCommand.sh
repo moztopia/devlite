@@ -13,6 +13,9 @@
 #   - Unlike `postStartCommand`, this script is **user-driven**, running only when someone connects to the container.
 #
 #   - Ideal for ensuring a seamless experience by configuring terminal sessions, fetching workspace updates, or bootstrapping development tools.
+#
+# set -eux
+#
 
 export postAttachCommand=true
 
