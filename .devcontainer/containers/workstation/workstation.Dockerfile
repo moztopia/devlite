@@ -1,22 +1,21 @@
 FROM ubuntu:24.04
 
-# Set the working directory
-WORKDIR /workspace
-
-# Install basic dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -y --no-install-recommends \
     curl \
     iputils-ping \
     zip \
     unzip \
     net-tools \
-    bash
+    bash \
+    sudo \
+    gnupg \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy the .bash_aliases file to the container
+WORKDIR /workspace
+
 COPY .devcontainer/containers/workstation/config/.bash_aliases /root/.bash_aliases
 
-# Ensure the aliases are loaded in the container's shell
 RUN echo 'if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi' >> /root/.bashrc
 
-# Keep the container running by tailing /dev/null
 CMD ["tail", "-f", "/dev/null"]
