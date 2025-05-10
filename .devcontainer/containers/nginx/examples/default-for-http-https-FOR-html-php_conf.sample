@@ -1,0 +1,44 @@
+# nginx configuration for http, https running html and php
+
+server {
+    listen 80;
+    server_name _;
+
+    root /usr/share/nginx/html;
+
+    index index.php index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass ${PHP_CONTAINER}:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME /var/www/html$fastcgi_script_name;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name moztopia.local *.moztopia.local;
+
+    root /usr/share/nginx/html;
+
+    index index.php index.html;
+
+    ssl_certificate /etc/nginx/ssl/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/server.key;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass ${PHP_CONTAINER}:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME /var/www/html$fastcgi_script_name;
+    }
+}

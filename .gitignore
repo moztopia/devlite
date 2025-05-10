@@ -1,0 +1,12 @@
+# DO NOT track dynamically created .env file
+.env
+
+# DO NOT track container logs or data
+/.devcontainer/containers/**/log/*
+/.devcontainer/containers/**/data/*
+
+# DO track all markdown files.
+!/**/*.md
+
+# DO NOT track node_modules located anywhere.
+**/node_modules

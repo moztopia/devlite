@@ -1,0 +1,35 @@
+{
+    "name": "devlite",
+    "initializeCommand": "/bin/bash .devcontainer/initializeCommand.sh",
+    "postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh",
+    "postStartCommand": "/bin/bash .devcontainer/postStartCommand.sh",
+    "onCreateCommand": "/bin/bash .devcontainer/onCreateCommand.sh",
+    "postAttachCommand": "/bin/bash .devcontainer/postAttachCommand.sh",
+    "updateContentCommand": "/bin/bash .devcontainer/updateContentCommand.sh",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "ubuntu",
+    "workspaceFolder": "/workspace",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/common-utils:2": {},
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/devcontainers/features/php:1": {
+            "version": "8.3"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "cweijan.vscode-database-client2",
+                "mikestead.dotenv"
+            ]
+        }
+    },
+    "remoteUser": "root"
+}
