@@ -14,7 +14,7 @@ export postCreateCommand=true
 
 # Load Node.JS Requirements
 
-cd $APP_ROOT
+cd /workspace/$APP_ROOT
 
 IFS=',' read -ra PACKAGES <<< "$NODE_BASE_PACKAGES"
 
