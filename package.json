@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moztopia/sample.git"
+    "url": "git+https://github.com/moztopia/devlite.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/moztopia/sample/issues"
+    "url": "https://github.com/moztopia/devlite/issues"
   },
-  "homepage": "https://github.com/moztopia/sample#readme",
+  "homepage": "https://github.com/moztopia/devlite#readme",
   "dependencies": {
     "express": "^5.1.0"
   }
