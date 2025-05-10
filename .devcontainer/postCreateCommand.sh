@@ -10,7 +10,7 @@
 #     for example installing dependencies or configuring project-specific settings that don’t
 #     need to reoccur on subsequent container starts.
 #
-set -eux
+# set -eux
 #
 
 export postCreateCommand=true
