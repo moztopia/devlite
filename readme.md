@@ -29,7 +29,7 @@
 
 ## Build and Load Expectations
 The initial build process **can take a significant amount of time** if there are no cached images or common layers available. The actual time required will vary depending on hardware performance:
-- **First-time build (no cache):** ~200 seconds
+- **First-time build (no cache):** ~250 seconds
 - **Rebuilding after deleting containers:** ~60 seconds
 - **Starting containers of an existing environment:** ~6 seconds
 
