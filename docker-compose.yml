@@ -1,47 +1,30 @@
 services:
   ubuntu:
     container_name: workstation_${COMPOSE_PROJECT_NAME}
-    build:
-      dockerfile: ${CONTAINERS_CONFIGDIR}/workstation/workstation.Dockerfile
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
+    ports:
+      - "80:8000"
     restart: "unless-stopped"
+    tty: true
     stop_signal: SIGTERM
     volumes:
       - ./:/workspace
-    env_file:
-      - path: .env
-      - path: ${CONTAINERS_CONFIGDIR}/workstation/docker-compose-workstation.env
-
-  nginx:
-    container_name: nginx_${COMPOSE_PROJECT_NAME}
-    build:
-      dockerfile: ${CONTAINERS_CONFIGDIR}/nginx/nginx.Dockerfile
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./${APP_WEBROOT}:/usr/share/nginx/html:rw
-      - ./${CONTAINERS_CONFIGDIR}/nginx/templates:/etc/nginx/templates:rw
-      - ./${CONTAINERS_CONFIGDIR}/nginx/log:/var/log/nginx:rw
-      - ./${CONTAINERS_CONFIGDIR}/nginx/ssl:/etc/nginx/ssl:ro
-    env_file:
-      - path: .env
-      - path: ${CONTAINERS_CONFIGDIR}/nginx/docker-compose-nginx.env
 
   redis:
     container_name: redis_${COMPOSE_PROJECT_NAME}
     image: redis:latest
     volumes:
-      - ./${CONTAINERS_CONFIGDIR}/redis/data:/data:rw
-    env_file:
-      - path: .env
-      - path: ${CONTAINERS_CONFIGDIR}/redis/docker-compose-redis.env
+      - ${CONTAINERS_CONFIGDIR}/redis/data:/data:rw
+      - ${CONTAINERS_CONFIGDIR}/redis/log:/var/log/redis:rw
 
   mariadb:
     container_name: mariadb_${COMPOSE_PROJECT_NAME}
-    build:
-      dockerfile: ${CONTAINERS_CONFIGDIR}/mariadb/mariadb.Dockerfile
+    image: mariadb:latest
     volumes:
-      - ./${CONTAINERS_CONFIGDIR}/mariadb/data:/var/lib/mysql:rw
-    env_file:
-      - path: .env
-      - path: ${CONTAINERS_CONFIGDIR}/mariadb/docker-compose-mariadb.env
+      - ${CONTAINERS_CONFIGDIR}/mariadb/data:/var/lib/mysql:rw
+      - ${CONTAINERS_CONFIGDIR}/mariadb/log:/var/log/mysql:rw
+    environment:
+      - MYSQL_DATABASE=${COMPOSE_PROJECT_NAME}
+      - MYSQL_USER=${COMPOSE_PROJECT_NAME}_user
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret

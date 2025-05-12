@@ -2,21 +2,15 @@
 
 ##### postAttachCommand.sh
 #
-# Purpose:
-#
-#   - Executes **after attaching** to the Dev Container, meaning it runs when a user opens the container in their IDE.
-#
-#   - Useful for setting up the developer environment, restoring session configurations, or displaying helpful information.
-#
-#   - Can trigger commands like installing missing dependencies, running status checks, or opening specific tools.
-#
-#   - Unlike `postStartCommand`, this script is **user-driven**, running only when someone connects to the container.
-#
-#   - Ideal for ensuring a seamless experience by configuring terminal sessions, fetching workspace updates, or bootstrapping development tools.
+# Do you need to do something each time a user attaches to the container?
 #
 # set -eux
 #
 
 export postAttachCommand=true
+
+##### Set Helpful Environment Variables
+
+cp -f /workspace/.devcontainer/.bash_aliases ~/.bash_aliases
 
 ##### Add your changes below here.

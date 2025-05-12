@@ -2,62 +2,51 @@
 
 ##### postCreateCommand.sh
 #
-# Purpose:
-#
-#   - Executes once after the container has been created and VS Code has attached for the very first time.
-#
-#   - Meant for one-time setup tasks in the container workspace,
-#     for example installing dependencies or configuring project-specific settings that don’t
-#     need to reoccur on subsequent container starts.
+# Do you need to do something after your container has been created? Install some 
+# ancillary utilities? 
 #
 # set -eux
 #
 
 export postCreateCommand=true
 
-##### Install express for node
+##### Install OS Package Updates
 
-npm install express
+apt update
 
-##### Install php-fpm for the workstation
+##### Install Utilities
 
-echo "tzdata tzdata/Areas select Asia" | sudo debconf-set-selections
-echo "tzdata tzdata/Zones/Asia select Bangkok" | sudo debconf-set-selections
+apt install -y \
+    iputils-ping
 
-PHP_MAJOR_MINOR_VERSION=$(sudo readlink /usr/local/php/current | grep -oP '\d+\.\d+')
-if [ -z "$PHP_MAJOR_MINOR_VERSION" ]; then
-    echo "(!) Could not detect PHP version from /usr/local/php/current symlink. Assuming 8.3 as a fallback."
-    PHP_MAJOR_MINOR_VERSION="8.3"
-fi
-echo "Detected/Using PHP version: $PHP_MAJOR_MINOR_VERSION"
+##### Install PHP
 
-sudo apt-get update -y
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    php${PHP_MAJOR_MINOR_VERSION}-fpm \
-    php${PHP_MAJOR_MINOR_VERSION}-mysql \
-    php${PHP_MAJOR_MINOR_VERSION}-curl \
-    php${PHP_MAJOR_MINOR_VERSION}-intl \
-    php${PHP_MAJOR_MINOR_VERSION}-gd \
-    php${PHP_MAJOR_MINOR_VERSION}-zip \
-    && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+export PHP_VERSION=8.3
 
-sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata
+apt install -y \
+    php${PHP_VERSION}-cli \
+    php${PHP_VERSION}-xml \
+    php${PHP_VERSION}-sqlite3 \
+    php${PHP_VERSION}-mysql \
+    php${PHP_VERSION}-redis \
+    php${PHP_VERSION}-memcached \
+    php${PHP_VERSION}-pgsql \
+    php${PHP_VERSION}-pdo-pgsql \
+    php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-curl \
+    php${PHP_VERSION}-zip \
+    php${PHP_VERSION}-bcmath \
+    php${PHP_VERSION}-intl \
+    php${PHP_VERSION}-tokenizer \
+    php${PHP_VERSION}-pdo \
+    php${PHP_VERSION}-xdebug \
+    php${PHP_VERSION}-gd
 
-FPM_POOL_CONF="/etc/php/${PHP_MAJOR_MINOR_VERSION}/fpm/pool.d/www.conf"
+##### Install Composer
 
-if [ -f "$FPM_POOL_CONF" ]; then
-    echo "Configuring PHP-FPM pool '$FPM_POOL_CONF' to listen on 0.0.0.0:9000..."
-    sudo sed -i.bak 's|^listen = .*$|listen = 0.0.0.0:9000|' "$FPM_POOL_CONF"
-    echo "PHP-FPM listen directive updated."
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
 
-else
-    echo "(!) PHP-FPM pool configuration file not found at '$FPM_POOL_CONF'. Manual configuration may be needed."
-    exit 1
-fi
-
-echo "Starting php-fpm service..."
-sudo service php${PHP_MAJOR_MINOR_VERSION}-fpm start
-
-echo "PHP-FPM setup steps complete."
-
-##### Add your changes below here.
+##### Add your changes below here. 

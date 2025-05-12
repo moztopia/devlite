@@ -11,7 +11,10 @@
     "workspaceFolder": "/workspace",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:latest": {},
-        "ghcr.io/devcontainers/features/common-utils:latest": {}
+        "ghcr.io/devcontainers/features/common-utils:latest": {},
+        "ghcr.io/devcontainers/features/git:latest": {},
+        "ghcr.io/devcontainers/features/github-cli:latest": {},
+        "ghcr.io/devcontainers/features/node:latest": {}
     },
     "customizations": {
         "vscode": {
@@ -21,8 +24,7 @@
             "extensions": [
                 "ms-azuretools.vscode-docker",
                 "cweijan.vscode-database-client2",
-                "mikestead.dotenv",
-                "felixfbecker.php-debug"
+                "mikestead.dotenv"
             ]
         }
     },

@@ -2,11 +2,14 @@
 .env
 
 # DO NOT track container logs or data
-/.devcontainer/containers/**/log/*
-/.devcontainer/containers/**/data/*
+.devcontainer/**/log/*
+.devcontainer/**/data/*
 
 # DO track all markdown files.
 !/**/*.md
 
 # DO NOT track node_modules located anywhere.
 **/node_modules
+
+# ALWAYS TRACK these files
+!**/.gitkeep

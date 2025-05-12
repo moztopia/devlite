@@ -2,9 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Node.js Server",
+            "label": "Laravel Server",
             "type": "shell",
-            "command": "node /workspace/app/server.js",
+            "command": "php artisan serve",
+            "args": [],
+            "options": {
+                "cwd": "$/backend"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
