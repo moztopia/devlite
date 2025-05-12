@@ -1,5 +1,5 @@
 {
-    "name": "gastro",
+    "name": "devlite",
     "initializeCommand": "/bin/bash .devcontainer/initializeCommand.sh",
     "postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh",
     "postStartCommand": "/bin/bash .devcontainer/postStartCommand.sh",

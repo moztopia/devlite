@@ -1,6 +1,6 @@
 # Set Environment Variables
 
-PROJECT_NAME=gastro
+PROJECT_NAME=devlite
 WORKSPACE_DIR="/workspace/${PROJECT_NAME}"
 
 # Create Aliases
