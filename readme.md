@@ -1,8 +1,3 @@
-Here's your updated **README.md**, with the troubleshooting section removed.
-
----
-
-```md
 # Devlite
 
 **Devlite** is a simple, ready-to-go development environment. Just set **one** variable, open VS Code, and start coding—**no manual setup required**.
