@@ -9,8 +9,8 @@ services:
     stop_signal: SIGTERM
     volumes:
       - ./:/workspace
-      - ~/.gitconfig:~/.gitconfig
-      - ~/.git-credentials:~/.git-credentials
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.git-credentials:/root/.git-credentials
 
   redis:
     container_name: redis_${COMPOSE_PROJECT_NAME}
