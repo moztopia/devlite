@@ -2,14 +2,8 @@
 
 ##### initializeCommand.sh
 #
-# Purpose:
-#
-#   - Runs inside the container after Docker (or Docker Compose) has already started the container,
-#     but before VS Code fully attaches and sets up the workspace.
-#
-#   - Intended for early initialization tasks that should occur within the running container,
-#     such as setting environment variables or making modifications to configuration files
-#     that the container will immediately rely on.
+# Do you need to do something BEFORE the container load starts? This command
+# runs in your local workstation's environment.
 #
 # set -eux
 #
@@ -20,6 +14,13 @@ export initializeCommand=true
 
 export PROJECT_NAME=$(basename "$PWD")
 
-envsubst < .env.template > .env ## all variables should get set here
+envsubst < .env.template > .env
+
+##### Clear the Docker Container local log folders
+
+echo "Clearing Container logs..."
+
+rm -f $PWD/.devcontainer/mariadb/log/*.log
+rm -f $PWD/.devcontainer/redis/log/*.log
 
 ##### Add your changes below here.

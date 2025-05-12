@@ -1,100 +1,39 @@
-# DevStation v1.22
+# Devlite
 
-🚧 **Documentation is still a work in progress!** 🚧
+**Devlite** is a simple, ready-to-go development environment. Just set **one** variable, open VS Code, and start coding—**no manual setup required**.
 
-you launch the node server by pressing the ctrl-shift-b build short keys
+## Features
+- **Minimal Configuration:** Only one required setting.
+- **Ubuntu-based DevContainer:** Optimized for development.
+- **Preconfigured Stack:** PHP, Node.js, MariaDB, Redis.
+- **VS Code Integration:** Just open the project folder, and DevContainers handle everything.
 
-## Overview
-
-**DevStation** is a fully containerized development environment tailored for PHP, Laravel, and Node.js workflows. Built for efficiency and flexibility, this setup streamlines repetitive tasks while enforcing best practices in environment management.
-
-### **Key Features:**
-- **Preconfigured Development Stack:** Includes PHP, Laravel, Node.js, and Nginx, ensuring immediate productivity.
-- **Containerized Architecture:** Uses Docker and DevContainers for isolation, portability, and consistency across machines.
-- **Automated Configuration:** Dynamically manages `.env` files, eliminating manual setup errors.
-- **Template-Based Deployment:** Developers can spin up new environments instantly using GitHub’s template repo functionality.
-- **Scalable Multi-Instance Support:** Enables running multiple isolated workspaces with custom port forwarding.
-- **Optimized for Debugging:** Comes with Xdebug preconfigured for seamless PHP debugging.
-- **Customizable & Extensible:** Modify features in `devcontainer.json` to fit specific needs, from package additions to workspace tweaks.
-
-Developers who value reproducibility, structured environments, and workflow automation will appreciate DevStation. Whether working solo or in a team, this setup eliminates inconsistencies, accelerates onboarding, and optimizes local development.
-
-## Installation
-
-Follow these steps to set up your environment:
-
-1. **Update your hosts file:**  
-   - If using **IPv4**, add:  
-     ```
-     127.0.0.1 devstation.moztopia.local
-     ```
-   - If using **IPv6**, add:  
-     ```
-     ::1 devstation.moztopia.local
-     ```
-
-2. **Install required tools:**  
-   - Git  
-   - GitHub CLI (`gh`) *(Note: `gh` requires Git to function)*  
-   - Docker  
-   - VSCode  
-
-3. **Start Docker (UI)**  
-4. **Navigate to your workspace folder**  
-5. **Create a repository from the template:**  
-   ```bash
-   gh repo create <your-repo-name> --template mozrin/devstation
+## Quick Setup
+1. **Set the project name** in `.bash_aliases` inside `.devcontainer`:
+   ```sh
+   PROJECT_NAME=sidewinder
    ```
-6. **Enter the newly created repository folder:**  
+2. **Open the folder in VS Code**:
    ```bash
-   cd <your-repo-name>
-   ```
-7. **Open VSCode:**  
-   ```bash
+   cd path/to/project
    code .
    ```
-8. **When prompted by VSCode, open in a container** ✅  
+3. **When prompted, select** "Reopen in DevContainer."
+4. **Wait for the container to start**—then you're ready to go!
 
-Everything should be set up correctly at this point.
+## Tech Stack
+- **OS:** Ubuntu (containerized)
+- **Languages:** PHP, Node.js
+- **Databases:** MariaDB, Redis
+- **IDE Support:** XDebug, VS Code (via DevContainer)
 
----
+## Build and Load Expectations
+The initial build process **can take a significant amount of time** if there are no cached images or common layers available. The actual time required will vary depending on hardware performance:
+- **First-time build (no cache):** ~250 seconds
+- **Rebuilding after deleting containers:** ~60 seconds
+- **Starting containers of an existing environment:** ~6 seconds
 
-## Notes
+Once the initial build is complete, subsequent starts are much faster, making this a **lightweight and efficient development workflow**.
 
-I primarily built this for **Laravel development**, which is a **PHP-centric** framework.  
-However, I also set up a **Node.js server**, and I’m curious to discover potential issues with that setup. 🤔  
-
-💡 You can run **multiple instances**, but since all use **ports 80 and 443**,  
-you’ll need to **adjust ports manually** in each instance.
-
-### **Alternative Setup**
-If modifying ports isn’t ideal, you can **deploy an isolated Nginx proxy**  
-that dynamically routes traffic based on **domain name** to the correct container and port.
-
----
-
-## Documentation (To Be Done)
-- Loading VSCode  
-- Running multiple instances  
-- Port management strategies  
-- Alternative proxy configurations  
-
----
-
-## Environment Configuration
-
-🚨 **Do NOT modify the `.env` file manually!** 🚨  
-The `.env` file is **overwritten** each time in the build process by `.env.template`.  
-
-This process is triggered in `devcontainer.json`  
-and handled by `.devcontainer/initializeCommand.sh`.
-
----
-
-## Customization
-
-This is a **large workstation footprint**, designed specifically for what I like to do.  
-Feel free to modify the workstation features in `devcontainer.json`.  
-
-A full list of available DevContainer features can be found here:  
-🔗 [DevContainers Features](https://github.com/devcontainers/features/tree/main/src)
+## License
+Licensed under **MIT License**.
