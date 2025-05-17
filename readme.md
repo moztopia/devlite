@@ -10,8 +10,10 @@
 
 ## Quick Setup
 
-1. Open the **.env.template** file and make changes to this section. Make sure none of the ports you choose are already in use on the local machine. Even if you are not using all of these features, it is easiest (although you can just remove them) to change them to something innocuous and move on.
-
+1. Open the **.env.template** file and make changes outlined there.
+2. Open the **.devcontainer/devcontainer.json** file and change this value (see image) to match the value you placed in the **WORKSPACE_FOLDER** variable in Step 1.
+3. If you are running **moztopia/threshold** modify its connections.json file with the values from Step 1.
+4. Start this container.
 
 ## Tech Stack
 - **OS:** Ubuntu (containerized)
