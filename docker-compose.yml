@@ -1,7 +1,7 @@
 services:
   ubuntu:
     container_name: workstation_${COMPOSE_PROJECT_NAME}
-    image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-${UBUNTU_VERSION}
     ports:
       - "${HTTP_PORT}:8000"
       - "${VITE_PORT}:5173"
@@ -15,7 +15,7 @@ services:
 
   redis:
     container_name: redis_${COMPOSE_PROJECT_NAME}
-    image: redis:latest
+    image: redis:${REDIS_VERSION}
     ports:
       - "${REDIS_PORT}:6379"
     volumes:
@@ -24,7 +24,7 @@ services:
 
   mariadb:
     container_name: mariadb_${COMPOSE_PROJECT_NAME}
-    image: mariadb:latest
+    image: mariadb:${MARIADB_VERSION}
     ports:
       - "${MARIADB_PORT}:3306"
     volumes:
