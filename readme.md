@@ -1,6 +1,6 @@
 # Devlite
 
-**Devlite** is a simple, ready-to-go development environment. Just set **a couple of** variables, open VS Code, and start coding—**no crazy-complicated setup required**.
+**Devlite** is a simple, ready-to-go development environment. Just set **a couple of** variables, open VS Code (code .), and start coding—**no crazy-complicated setup is required**.
 
 ## Features
 - **Minimal Configuration:** Only *a couple of* required settings.
@@ -19,6 +19,14 @@
 
 3. If you are running **moztopia/threshold** modify its connections.json file with the values from Step 1.
 4. Start this container.
+
+## Optional Setup
+
+You can change the versions of the containers and even load more or fewer containers by changing the **docker-compose.yml** and **.env.template** files. You should be careful when changing versions and patient when trying to add more services. If you want help, send a message to *mailto:mozrin@mozrin.com** and I will try to help you.
+
+You can also change the PHP version in the postCreateCommand.sh file. It looks like this:
+
+**export PHP_VERSION=8.3**
 
 ## Tech Stack
 - **OS:** Ubuntu (containerized)
