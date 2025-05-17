@@ -1,1 +1,8 @@
-<?php phpinfo(); ?>
+<?php 
+
+    echo "";
+    echo "devlite";
+    echo "";
+    phpinfo(); 
+
+?>
