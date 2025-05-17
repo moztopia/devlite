@@ -9,9 +9,11 @@ services:
     tty: true
     stop_signal: SIGTERM
     volumes:
-      - ./:/devlite
+      - ./:/${WORKSPACE_FOLDER}
       - ~/.gitconfig:/root/.gitconfig
       - ~/.git-credentials:/root/.git-credentials
+    networks:
+      - moztopia_network
 
   redis:
     container_name: redis_${COMPOSE_PROJECT_NAME}
@@ -21,6 +23,8 @@ services:
     volumes:
       - ${CONTAINERS_CONFIGDIR}/redis/data:/data:rw
       - ${CONTAINERS_CONFIGDIR}/redis/log:/var/log/redis:rw
+    networks:
+      - moztopia_network
 
   mariadb:
     container_name: mariadb_${COMPOSE_PROJECT_NAME}
@@ -35,3 +39,10 @@ services:
       - MYSQL_USER=${COMPOSE_PROJECT_NAME}_user
       - MYSQL_PASSWORD=secret
       - MYSQL_ROOT_PASSWORD=secret
+    networks:
+      - moztopia_network
+
+networks:
+  moztopia_network:
+    name: moztopia_network
+    driver: bridge

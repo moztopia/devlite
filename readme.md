@@ -19,6 +19,18 @@
 
 3. If you are running **moztopia/threshold** modify its connections.json file with the values from Step 1.
 4. Start this container.
+5. cd src/public && ./php_server.sh
+
+**note** Any container that wants to use threshold needs to share a docker network. I am sure there is a way to bridge and route between them, but I will save that for another time. Note that all **devlite** projects share the moztopia_network. You can change this, but you have to chage them all right now.
+
+**example**
+
+```docker
+networks:
+  moztopia_network:
+    name: moztopia_network
+    driver: bridge
+```
 
 ## Optional Setup
 

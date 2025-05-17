@@ -11,6 +11,6 @@ export postAttachCommand=true
 
 ##### Set Helpful Environment Variables
 
-cp -f /devlite/.devcontainer/.bash_aliases ~/.bash_aliases
+cp -f /${PWD}/.devcontainer/.bash_aliases ~/.bash_aliases
 
 ##### Add your changes below here.
