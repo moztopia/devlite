@@ -3,18 +3,21 @@ services:
     container_name: workstation_${COMPOSE_PROJECT_NAME}
     image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
     ports:
-      - "80:8000"
+      - "${HTTP_PORT}:8000"
+      - "${VITE_PORT}:5173"
     restart: "unless-stopped"
     tty: true
     stop_signal: SIGTERM
     volumes:
-      - ./:/workspace
+      - ./:/devlite
       - ~/.gitconfig:/root/.gitconfig
       - ~/.git-credentials:/root/.git-credentials
 
   redis:
     container_name: redis_${COMPOSE_PROJECT_NAME}
     image: redis:latest
+    ports:
+      - "${REDIS_PORT}:6379"
     volumes:
       - ${CONTAINERS_CONFIGDIR}/redis/data:/data:rw
       - ${CONTAINERS_CONFIGDIR}/redis/log:/var/log/redis:rw
@@ -22,6 +25,8 @@ services:
   mariadb:
     container_name: mariadb_${COMPOSE_PROJECT_NAME}
     image: mariadb:latest
+    ports:
+      - "${MARIADB_PORT}:3306"
     volumes:
       - ${CONTAINERS_CONFIGDIR}/mariadb/data:/var/lib/mysql:rw
       - ${CONTAINERS_CONFIGDIR}/mariadb/log:/var/log/mysql:rw
