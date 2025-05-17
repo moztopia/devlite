@@ -8,6 +8,10 @@
 - **Preconfigured Stack:** PHP, Node.js, MariaDB, Redis.
 - **VS Code Integration:** Just open the project folder, and DevContainers handle everything.
 
+*NOTE: Add this to and re-work instructions
+![image](https://github.com/user-attachments/assets/5fd28f9a-c319-4c62-8ceb-b2fb6903fc99)
+
+
 ## Quick Setup
 1. **Set the project name** in `.bash_aliases` inside `.devcontainer`:
    ```sh
