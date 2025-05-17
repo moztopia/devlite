@@ -1,15 +1,23 @@
-# DO NOT track dynamically created .env file
+# DO NOT track these SPECIFIC project files.
 .env
 
-# DO NOT track container logs or data
-.devcontainer/**/log/*
+# DO NOT track these SPECIFIC project directories.
+
+.devcontainer/**/log/*                  
 .devcontainer/**/data/*
 
-# DO track all markdown files.
+# TRACK these SPECIFIC project files.
+
 !/**/*.md
 
-# DO NOT track node_modules located anywhere.
-**/node_modules
+# DO NOT track these potentially present files and folders.
 
-# ALWAYS TRACK these files
+**/node_modules
+**/vendor
+**/tmp
+**/temp
+**/cache
+
+# ALWAYS TRACK these potentially present files and folders.
+
 !**/.gitkeep
