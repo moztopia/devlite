@@ -9,17 +9,9 @@
 - **VS Code Integration:** Just open the project folder, and DevContainers handle everything.
 
 ## Quick Setup
-1. **Set the project name** in `.bash_aliases` inside `.devcontainer`:
-   ```sh
-   PROJECT_NAME=sidewinder
-   ```
-2. **Open the folder in VS Code**:
-   ```bash
-   cd path/to/project
-   code .
-   ```
-3. **When prompted, select** "Reopen in DevContainer."
-4. **Wait for the container to start**—then you're ready to go!
+
+1. Open the **.env.template** file and make changes to this section. Make sure none of the ports you choose are already in use on the local machine. Even if you are not using all of these features, it is easiest (although you can just remove them) to change them to something innocuous and move on.
+
 
 ## Tech Stack
 - **OS:** Ubuntu (containerized)
