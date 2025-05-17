@@ -24,7 +24,7 @@ services:
 
   mariadb:
     container_name: mariadb_${COMPOSE_PROJECT_NAME}
-    image: mariadb:11.7
+    image: mariadb:latest
     ports:
       - "${MARIADB_PORT}:3306"
     volumes:
