@@ -1,44 +1,42 @@
 # Devlite
 
-**Devlite** is a simple, ready-to-go development environment. Just set **a couple of** variables, open VS Code (code .), and start coding—**no crazy-complicated setup is required**.
+**Devlite** is a simple, ready-to-go development environment. Just set **a couple of** variables, open VS Code (`code .`), and start coding—**no crazy-complicated setup is required**.
 
 ## Features
 - **Minimal Configuration:** Only *a couple of* required settings.
 - **Ubuntu-based DevContainer:** Optimized for development.
 - **Preconfigured Stack:** PHP, Node.js, MariaDB, Redis.
-- **VS Code Integration:** Just open the project folder using **code .**, and DevContainers handle everything.
+- **VS Code Integration:** Open the project folder using **code .** and let DevContainers handle the rest.
 
 ## Quick Setup
 
-**note** The first time you open this with code, you should **NOT** load the container. First complete these steps and then load the container.
 
-1. Open the **.env.template** file and make changes outlined there.
-2. Open the **.devcontainer/devcontainer.json** file and change this value to match the value you placed in the **WORKSPACE_FOLDER** variable in Step 1.
+1. Open a terminal and go to the folder where you cloned *devlite*. **cd /you-project-folder**
+2. Load Visual Studio Code by typing: ```code .```
+
+   ![image](https://github.com/user-attachments/assets/78e0feda-f25b-4946-a8b9-be7911c16d99)
+
+4. When *vscode* loads, it will see the devcontainer configuration and ask you if you want to open it. Just close this dialog for now.
+   
+   ![image](https://github.com/user-attachments/assets/22f119a6-94b0-4cb2-beb3-34285eaa3e8e)
+
+5. Open the **.env.template** file and change the WORKSPACE_FOLDER name to match the name of your project folder into which you you cloned devlite.
+   
+   ![image](https://github.com/user-attachments/assets/41b7dbb7-5dff-46a5-9317-d05b49973691)
+
+6. Open the **.devcontainer/devcontainer.json** file and update its value to match the **WORKSPACE_FOLDER** variable set in Step 4.
    
    ![image](https://github.com/user-attachments/assets/f5209622-8b89-4274-9bd9-fb6b8de24eac)
 
-3. If you are running **moztopia/threshold** modify its connections.json file with the values from Step 1.
-4. Start this container.
-5. cd src/public && ./php_server.sh
+7. Close *vscode* and then open it again using by typing: ```code .```
 
-**note** Any container that wants to use threshold needs to share a docker network. I am sure there is a way to bridge and route between them, but I will save that for another time. Note that all **devlite** projects share the moztopia_network. You can change this, but you have to chage them all right now.
+   ![image](https://github.com/user-attachments/assets/d39d3864-fecb-4434-b36f-7622fca0d740)
 
-**example**
+8. When prompted to Reopen in Container, do it.
 
-```docker
-networks:
-  moztopia_network:
-    name: moztopia_network
-    driver: bridge
-```
+   ![image](https://github.com/user-attachments/assets/d925bd01-2c69-42b6-8df7-1ca4b70c6f4e)
 
-## Optional Setup
-
-You can change the versions of the containers and even load more or fewer containers by changing the **docker-compose.yml** and **.env.template** files. You should be careful when changing versions and patient when trying to add more services. If you want help, send a message to *mailto:mozrin@mozrin.com** and I will try to help you.
-
-You can also change the PHP version in the postCreateCommand.sh file. It looks like this:
-
-**export PHP_VERSION=8.3**
+At this point, there is an assumption that you know what to do with a running devcontainer. If you need further assistance, there is a plethora of documentation online about devcontainers. There is also a [Devlite Wiki](https://github.com/moztopia/devlite/wiki) where I will slowly add some more documentation and requested topics.
 
 ## Tech Stack
 - **OS:** Ubuntu (containerized)
@@ -46,16 +44,15 @@ You can also change the PHP version in the postCreateCommand.sh file. It looks l
 - **Databases:** MariaDB, Redis
 - **IDE Support:** XDebug, VS Code (via DevContainer)
 
-## Variants
-- **devlite-laravel:** Adds Laravel's latest version and viter support.
-
 ## Build and Load Expectations
-The initial build process **can take a significant amount of time** if there are no cached images or common layers available. The actual time required will vary depending on hardware performance:
+
+The initial build process **can take a significant amount of time** if there are no cached images or common layers available. The build time depends on your hardware:
 - **First-time build (no cache):** ~250 seconds
 - **Rebuilding after deleting containers:** ~60 seconds
 - **Starting containers of an existing environment:** ~6 seconds
 
-Once the initial build is complete, subsequent starts are much faster, making this a **lightweight and efficient development workflow**.
+Once the initial build is complete, subsequent starts are much faster, ensuring a **lightweight and efficient development workflow**.
 
 ## License
-Licensed under **MIT License**.
+
+Licensed under the **MIT License**.
