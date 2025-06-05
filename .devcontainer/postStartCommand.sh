@@ -3,8 +3,6 @@
 ##### postStartCommand.sh
 #
 # set -eux
-#
-
-export postStartCommand=true
+# export postStartCommand=true
 
 ##### Add your changes below here.

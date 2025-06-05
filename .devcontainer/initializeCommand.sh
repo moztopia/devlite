@@ -6,9 +6,7 @@
 # runs in your local workstation's environment.
 #
 # set -eux
-#
-
-export initializeCommand=true
+# export initializeCommand=true
 
 ##### Automatically populate the .env files from the template.
 

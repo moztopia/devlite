@@ -9,6 +9,15 @@
     "dockerComposeFile": "../docker-compose.yml",
     "service": "ubuntu",
     "workspaceFolder": "/devlite",
+    "containerEnv": {
+        "DEVLITE_PROJECT_NAME": "${localWorkspaceFolderBasename}",
+        "DEVLITE_LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+        "DEVLITE_CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+        "DEVLITE_LOCAL_DEVCONTAINER_FOLDER": "${localWorkspaceFolder}/.devcontainer",
+        "DEVLITE_CONTAINER_DEVCONTAINER_FOLDER": "${containerWorkspaceFolder}/.devcontainer",
+        "DEVLITE_LOCAL_SRC_FOLDER": "${localWorkspaceFolder}/src",
+        "DEVLITE_CONTAINER_SRC_FOLDER": "${containerWorkspaceFolder}/src"
+    },
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:latest": {},
         "ghcr.io/devcontainers/features/common-utils:latest": {}

@@ -1,6 +1,6 @@
 services:
   ubuntu:
-    container_name: workstation_${COMPOSE_PROJECT_NAME}
+    container_name: workstation_${DEVLITE_PROJECT_NAME}
     image: mcr.microsoft.com/devcontainers/base:ubuntu-${UBUNTU_VERSION}
     ports:
       - "${HTTP_PORT}:8000"
@@ -9,36 +9,36 @@ services:
     tty: true
     stop_signal: SIGTERM
     volumes:
-      - ./:/${WORKSPACE_FOLDER}
+      - ./:/${DEVLITE_CONTAINER_WORKSPACE_FOLDER}
       - ~/.gitconfig:/root/.gitconfig
       - ~/.git-credentials:/root/.git-credentials
     networks:
       - moztopia_network
 
   redis:
-    container_name: redis_${COMPOSE_PROJECT_NAME}
+    container_name: redis_${DEVLITE_PROJECT_NAME}
     image: redis:${REDIS_VERSION}
     ports:
       - "${REDIS_PORT}:6379"
     volumes:
-      - ${CONTAINERS_CONFIGDIR}/redis/data:/data:rw
-      - ${CONTAINERS_CONFIGDIR}/redis/log:/var/log/redis:rw
+      - ${DEVLITE_CONTAINER_DEVCONTAINER_FOLDER}/redis/data:/data:rw
+      - ${DEVLITE_CONTAINER_DEVCONTAINER_FOLDER}/redis/log:/var/log/redis:rw
     networks:
       - moztopia_network
 
   mariadb:
-    container_name: mariadb_${COMPOSE_PROJECT_NAME}
+    container_name: mariadb_${DEVLITE_PROJECT_NAME}
     image: mariadb:${MARIADB_VERSION}
     ports:
       - "${MARIADB_PORT}:3306"
     volumes:
-      - ${CONTAINERS_CONFIGDIR}/mariadb/data:/var/lib/mysql:rw
-      - ${CONTAINERS_CONFIGDIR}/mariadb/log:/var/log/mysql:rw
+      - ${DEVLITE_CONTAINER_DEVCONTAINER_FOLDER}/mariadb/data:/var/lib/mysql:rw
+      - ${DEVLITE_CONTAINER_DEVCONTAINER_FOLDER}/mariadb/log:/var/log/mysql:rw
     environment:
-      - MYSQL_DATABASE=${COMPOSE_PROJECT_NAME}
-      - MYSQL_USER=${COMPOSE_PROJECT_NAME}_user
-      - MYSQL_PASSWORD=secret
-      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=${DEVLITE_PROJECT_NAME}
+      - MYSQL_USER=${DEVLITE_PROJECT_NAME}_user
+      - MYSQL_PASSWORD=${DEVLITE_MARIADB_USER_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DEVLITE_MARIADB_ROOT_PASSWORD}
     networks:
       - moztopia_network
 

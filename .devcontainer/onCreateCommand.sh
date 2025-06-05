@@ -10,8 +10,6 @@
 #     or performing database schema initializations that must occur only once during the container’s lifetime.
 #
 # set -eux
-#
-
-export onCreateCommand=true
+# export onCreateCommand=true
 
 ##### Add your changes below here.

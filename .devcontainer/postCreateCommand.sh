@@ -6,9 +6,7 @@
 # ancillary utilities? 
 #
 # set -eux
-#
-
-export postCreateCommand=true
+# export postCreateCommand=true
 
 ##### Install OS Package Updates
 
