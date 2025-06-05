@@ -20,8 +20,17 @@ envsubst < .env.template > .env
 ABORT_CONFIG_FILE=$PWD/.devcontainer/devcontainer.json
 ABORT_WORKSPACE_NAME=$(basename $(jq -r '.workspaceFolder' "$ABORT_CONFIG_FILE"))
 
+clear
+echo ""   
+echo "   ██████╗ ███████╗██╗   ██╗██╗     ██╗████████╗███████╗"
+echo "   ██╔══██╗██╔════╝██║   ██║██║     ██║╚══██╔══╝██╔════╝"
+echo "   ██║  ██║█████╗  ██║   ██║██║     ██║   ██║   █████╗  "
+echo "   ██║  ██║██╔══╝   ██║ ██║ ██║     ██║   ██║   ██╔══╝  "
+echo "   ██████╔╝███████╗ ╚████╔╝ ███████╗██║   ██║   ███████╗"
+echo "   ╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚═╝   ╚═╝   ╚══════╝"
+echo ""   
+
 if [ "$ABORT_WORKSPACE_NAME" != "$PROJECT_NAME" ]; then
-    clear
     echo -e "\e[1;31mERROR: Problem detected in devcontainer.json! ABORTING\e[0m"
     echo -e ""
     echo -e "\e[1;33mPlease update 'workspaceFolder' to match your repo\e[0m"
