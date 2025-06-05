@@ -1,5 +1,7 @@
 # Devlite
 
+Want to support this project? [Buy Me a Beer!](https://coff.ee/mozrin)
+
 **Devlite** is a simple, ready-to-go development environment. Just set **a couple of** variables, open VS Code (`code .`), and start coding—**no crazy-complicated setup is required**.
 
 ## Features
