@@ -18,13 +18,13 @@ envsubst < .env.template > .env
     # folder's basename, you can expect this to abort.
 
 ABORT_CONFIG_FILE=$PWD/.devcontainer/devcontainer.json
-ABORT_WORKSPACE_FOLDER=$(jq -r '.workspaceFolder' "$ABORT_CONFIG_FILE")
+ABORT_WORKSPACE_NAME=$(basename $(jq -r '.workspaceFolder' "$ABORT_CONFIG_FILE"))
 
-echo $
-if [ "$ABORT_WORKSPACE_FOLDER" != "$PWD" ]; then
-    echo -e "\e[1;31mERROR: Placeholder detected in devcontainer.json! ABORTING\e[0m"
+if [ "$ABORT_WORKSPACE_NAME" != "$PROJECT_NAME" ]; then
+    echo -e "\e[1;31mERROR: Problem detected in devcontainer.json! ABORTING\e[0m"
     echo -e ""
-    echo -e "\e[1;33mPlease update 'workspaceFolder' before starting the container.\e[0m"
+    echo -e "\e[1;33mPlease update 'workspaceFolder' to match your repo\e[0m"
+    echo -e "\e[1;33mfolder before starting the container.\e[0m"
     echo -e ""
     echo -e "\e[1;33mNOTE: This command file is currently executing a\e[0m"
     echo -e "\e[1;33msleep 86400 (24 hours). Don't wait :-)\e[0m"
