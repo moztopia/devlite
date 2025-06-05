@@ -8,7 +8,7 @@
     "updateContentCommand": "/bin/bash .devcontainer/updateContentCommand.sh",
     "dockerComposeFile": "../docker-compose.yml",
     "service": "ubuntu",
-    "workspaceFolder": "/devlite",
+    "workspaceFolder": "/CHANGE_THIS_TO_YOUR_PROJECT_FOLDER_BASENAME",
     "containerEnv": {
         "DEVLITE_PROJECT_NAME": "${localWorkspaceFolderBasename}",
         "DEVLITE_LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",

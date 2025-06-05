@@ -14,6 +14,35 @@ export PROJECT_NAME=$(basename "$PWD")
 
 envsubst < .env.template > .env
 
+##### If your workspace folder does not match your current
+    # folder's basename, you can expect this to abort.
+
+ABORT_CONFIG_FILE=$PWD/.devcontainer/devcontainer.json
+ABORT_WORKSPACE_FOLDER=$(jq -r '.workspaceFolder' "$ABORT_CONFIG_FILE")
+
+echo $
+if [ "$ABORT_WORKSPACE_FOLDER" != "$PWD" ]; then
+    echo -e "\e[1;31mERROR: Placeholder detected in devcontainer.json! ABORTING\e[0m"
+    echo -e ""
+    echo -e "\e[1;33mPlease update 'workspaceFolder' before starting the container.\e[0m"
+    echo -e ""
+    echo -e "\e[1;33mNOTE: This command file is currently executing a\e[0m"
+    echo -e "\e[1;33msleep 86400 (24 hours). Don't wait :-)\e[0m"
+    echo -e ""
+    echo -e "\e[1;35m1. CTRL-C and wait for a bit for it to fail.\e[0m"
+    echo -e "\e[1;35m2. You will get a Devcontainer ERROR Dialogue\e[0m"
+    echo -e ""
+    echo -e "\e[1;35m4. Read the /readme.md and follow the instructions.\e[0m"
+    echo -e ""
+    echo -e "\e[1;33mCompleting the instructions takes less than 30 seconds.\e[0m"
+
+    sleep 86400
+
+    exit 0
+fi
+
+echo -e "\e[1;Devlite:${PROJECT_NAME} initialization successful.\e[0m"
+
 ##### Clear the Docker Container local log folders
 
 echo "Clearing Container logs..."
