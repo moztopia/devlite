@@ -14,9 +14,10 @@
 
 **/node_modules
 **/vendor
-**/tmp
-**/temp
-**/cache
+**/tmp/*
+**/temp/*
+**/cache/*
+**/wiki/*
 
 # ALWAYS TRACK these potentially present files and folders.
 
